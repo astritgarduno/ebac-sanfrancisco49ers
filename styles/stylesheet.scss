@@ -1,0 +1,455 @@
+$color: #B22222;
+$golden: #B8860B;
+$Wgolden: #DAA520;
+$indian_red: #CD5C5C;
+
+@mixin phone {
+    @media screen and (min-width: 300px) and (max-width: 820px) {@content}
+}
+
+@mixin tablet {
+    @media screen and (min-width: 750px) and (max-width: 1300px) {@content}
+}
+
+@mixin container ($direction, $align, $justify, $gap){
+    display: flex;
+    flex-direction: $direction;
+    padding: 5px;
+    margin: 5px;
+    align-items: $align;
+    justify-content: $justify;
+    gap: $gap;
+}
+
+%carousel { 
+    width: 650px;
+    height: 500px;
+}
+
+%carouselP {
+    width: 250px;
+    height: 100px;
+}
+
+body {
+    color: #000;
+}
+
+header {
+    width: 100%;
+    font-family: "Lexend", Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+
+    .logo {
+        background-image: url("../img/cober.jpeg");
+        background-size: cover;
+        background-position-y: 30%;
+
+        img  {
+            width: 250px;
+            display: block;
+            margin: 0 auto;
+
+            @include phone {
+                width: 100px;
+            }
+        }
+    }
+
+    nav {
+        @include container(row, center, space-evenly, 0px);
+
+        img {
+            width: 200px;
+
+            @include phone {
+                width: 80px;
+            }
+        }
+
+        .logo_mixin {
+            @include phone {
+                display: inline-block;
+                text-align: center;
+                margin: 0 auto;
+                margin-top: -5%;
+            }
+
+            .logo_1 {
+                width: 100px;
+
+                @include phone {
+                    width: 45px;
+                }
+            }
+        }
+    }
+}
+
+main {
+    h1 {
+        display: block;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 5px;
+        background-color: $color;
+        color: #fff;
+        font-family: "DynaPuff", system-ui, Arial, Helvetica, sans-serif;
+
+        @include phone {
+            font-size: 20px;   
+        }
+    } 
+
+    .home {
+        padding: 5px 10px;
+        @include container(row, center, center, 15px);
+        @include phone {
+            flex-direction: column;
+        }
+        @include tablet {
+            flex-direction: column;
+        }
+
+        .home_history {
+            @include container(column, center, center, 10px);
+
+            div {
+                h3 {
+                    display: inline-block;
+                    padding: 10px;
+                    background-color: $golden;
+                    color: #000;
+                    font-family: "Galindo", sans-serif, Arial, Helvetica;
+
+                    @include phone {
+                        font-size: 15px;
+                    }
+                }
+                
+                p{
+                    text-align: justify;
+                    @include phone {
+                        font-size: 10px;   
+                    }
+                }
+
+                ul {
+                   @include phone {
+                        font-size: 10px;   
+                    } 
+                }
+            }
+        }
+        
+
+        .home_carousel {
+            #carouselExample {
+                @extend %carousel;
+                @include phone {
+                    width: 320px;
+                    height: 250px;
+                }
+                
+                .carousel-inner {
+                    @extend %carousel;
+                    @include phone {
+                        width: 320px;
+                        height: 250px;
+                    }
+
+                    img {
+                        @extend %carousel;
+                        @include phone {
+                            width: 320px;
+                            height: 250px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer_nav {
+    @include container(row, center, center, 0px);
+}
+
+footer {
+    background-image: url("../img/cover23.jpeg");
+    background-size: cover;
+    background-position-y: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    @include phone {
+        flex-direction: column;
+    }
+
+    .logo {
+        img  {
+            width: 250px;
+            display: block;
+            margin: 0 auto;
+
+            @include phone {
+                width: 100px;
+            }
+        }
+    }
+
+    nav {
+        @include container(column, center, center, 10px);
+        @include phone {
+            flex-direction: row;
+        }
+
+        .footer_a {
+            text-decoration: none;
+            background-color: $Wgolden;
+            padding: 5px;
+            color: $color;
+            font-weight: 600;
+            border-radius: 10px;
+
+            @include phone {
+                font-size: 10px;
+            }
+        }
+
+        .footer_a-animation:hover {
+            transition: all, 0.4s, linear;
+            transform: scale(1.2);
+            background-color: $color;
+            color: $Wgolden;
+        }
+    }
+}
+
+/*Format and style for PRODUCTS.HTML*/
+
+.cart {
+    @include container(row, center, space-between, 0px);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-left: 5px;
+
+    h3 {
+        display: inline-block;
+        border-radius: 15px;
+        background-color: $golden;
+        color: #000;
+        font-family: "Galindo", sans-serif, Arial, Helvetica;
+        padding: 10px;
+        margin: 15px 0;
+        text-align: center;
+
+        @include phone {
+            font-size: 15px;
+        }
+    }
+
+    article {
+        @include container(row, center, center, 15px);
+        padding: none;
+        margin: none;
+        margin-left: 5px;
+
+        img {
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+
+            @include phone {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        i:hover {
+            cursor: pointer;
+            transform: scale(1.3);
+            transition: 0.5s;
+        }
+    }
+}
+
+.products_list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 5px;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+
+    @include phone {
+       grid-template-columns: 1fr; 
+    }
+
+    @include tablet {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .card {
+        height: 452px;
+
+        img{
+            width: 286px;
+            height: 286px;
+        }
+
+        button {
+            background-color: $color;
+            border-color: $color;
+        }
+
+        button:hover {
+            background-color: #fff;
+            border-color: $color;
+            color: $color;
+            transition: all, 5s, linear;
+        }
+    }
+
+    .modal-footer {
+        .btn-primary {
+            background-color: $golden;
+            border-color: $golden;
+        }
+
+        .btn-primary:hover {
+            background-color: #fff;
+            color: $golden;
+            border-color: $golden;
+
+        }
+    }
+} 
+
+.size_head-body {
+    .size_head{
+        display: flex;
+        margin-top: 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        h4 {
+            background-color: $Wgolden;
+            padding: 10px;
+            border-radius: 15px;
+            font-family: "Galindo", sans-serif, Arial, Helvetica;
+        }
+
+        button {
+            border-radius: 50%;
+            background-color: #B22222;
+            border-color: #B22222;
+            color: #fff;
+        }
+    }
+
+    #miModal_1 {
+        align-content: center;
+        justify-items: center;
+
+        .modal-content {
+            width: 900px;
+
+            .modal-body {
+                width: 850px;
+
+                .accordion {
+                    width: 850px;
+                }
+            }
+        }
+    }
+
+    .players_img {
+        a{
+            img {
+                display: block;
+                margin: 0 auto;
+                height: 500px;
+                width: 888.88px;
+
+                @include phone {
+                    width: 350px;
+                    height: 250px;
+                }
+            }
+        }
+    }
+}
+
+/*Format and Style for PLAYERS.HTML*/
+
+.players {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    gap: 15px;
+
+    @include phone {
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+
+    .sam {
+        img {
+            border-radius: 50%;
+            width: 400px;
+            height: 400px;
+            margin: 15px;
+
+            @include phone {
+                width: 200px;
+                height: 200px;  
+            }
+        }
+    }
+
+    h3 {
+        font-family: "Galindo", sans-serif, Arial, Helvetica;
+        text-align: center;
+        margin: 15px;
+        background-color: $Wgolden;
+        padding: 10px;
+        display: inline-block;
+        border-radius: 20px;
+
+        @include phone {
+            font-size: 15px;
+        }
+    }
+
+    .accordion {
+        strong {
+            width: 100%;
+            @include container(row, center, space-around, 20px);
+            @include phone {
+                flex-direction: column;
+            }
+
+            p {
+                font-weight: 400;
+                text-align: justify;
+            }
+
+            img {
+                width: 200px;
+                height: 220px;
+                border-radius: 10px;
+            }
+        }   
+    }
+}
+
